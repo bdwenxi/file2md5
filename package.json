@@ -1,0 +1,39 @@
+{
+  "name": "file2md5",
+  "version": "1.0.0",
+  "description": "file2md5 is a browser-side library based on SparkMD5, which supports typescript friendly",
+  "main": "lib/index.js",
+  "module": "es/index.js",
+  "types": "es/index.d.ts",
+  "repository": "git@github.com:bdwenxi/file2md5.git",
+  "homepage": "https://github.com/bdwenxi/file2md5",
+  "author": "bdwenxi <bdwenxi@gmail.com>",
+  "contributors": [
+    {
+      "name": "bdwenxi",
+      "email": "bdwenxi@gmail.com"
+    }
+  ],
+  "scripts": {
+    "build": "rm -rf es cjs && tsc & tsc --module esnext --outDir ./es",
+    "build:check": "tsc",
+    "test": "skr test --coverage"
+  },
+  "files": [
+    "src",
+    "cjs",
+    "es"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/spark-md5": "^3.0.2",
+    "reskript": "^0.26.7",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "spark-md5": "^3.0.1"
+  }
+}
