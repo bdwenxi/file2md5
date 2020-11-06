@@ -1,7 +1,7 @@
 {
   "name": "file2md5",
   "version": "1.0.0",
-  "description": "file2md5 is a browser-side library based on SparkMD5, which supports typescript friendly",
+  "description": "file2md5 is a browser-side library based on SparkMD5, which supports typescript friendly.",
   "main": "lib/index.js",
   "module": "es/index.js",
   "types": "es/index.d.ts",
