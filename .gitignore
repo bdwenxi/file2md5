@@ -73,4 +73,6 @@ Thumbs.db
 # build assets
 /*/*/es
 /*/*/cjs
+.es
+.cjs
 packages/doc/.docz
