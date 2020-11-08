@@ -18,20 +18,23 @@ const file2md5 = function (options: IOptions): IMd5Action {
     const md5: IMd5Action = function (file: File) {
         const spark = new SparkMD5.ArrayBuffer();
         const fileReader = new FileReader();
+        const fileSize = file.size;
+        const chunks = Math.ceil(fileSize / chunkSize);
         let currentChunk = 0;
         let progress = 0;
 
+        md5.abort = function () {
+            fileReader.abort();
+        };
+
+        const loadNext = function (): void {
+            const start = currentChunk * chunkSize;
+            const end = start + chunkSize >= fileSize ? fileSize : start + chunkSize;
+
+            fileReader.readAsArrayBuffer(File.prototype.slice.call(file, start, end));
+        };
+
         const execute = function (resolve: (md5: string) => void, reject: (err: DOMException | null) => void) {
-            const fileSize = file.size;
-            const chunks = Math.ceil(fileSize / chunkSize);
-
-            const loadNext = function (): void {
-                const start = currentChunk * chunkSize;
-                const end = start + chunkSize >= fileSize ? fileSize : start + chunkSize;
-
-                fileReader.readAsArrayBuffer(File.prototype.slice.call(file, start, end));
-            };
-
             fileReader.addEventListener(
                 'load',
                 e => {
@@ -65,9 +68,7 @@ const file2md5 = function (options: IOptions): IMd5Action {
         return new Promise<string>(execute);
     }
 
-    md5.abort = function () {
-        // TODO
-    };
+    md5.abort = function () {};
 
     return md5;
 };
