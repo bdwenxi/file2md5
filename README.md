@@ -8,7 +8,11 @@ file2md5 is a browser-side implementation of file conversion to md5 format based
 
 ## Features
 
-- 
+- Supports Typescript
+
+- Promise API
+
+- All browsers supported
 
 ## Installation
 
