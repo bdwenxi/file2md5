@@ -49,6 +49,7 @@
         "typescript": "^4.0.5"
     },
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/bdwenxi/"
+        "access": "public",
+        "registry": "https://registry.npmjs.com"
     }
 }
