@@ -2,75 +2,72 @@ import SparkMD5 from 'spark-md5';
 
 export interface IOptions {
     chunkSize?: number;
+    raw?: boolean;
     onProgress?: (progress: number) => unknown;
-    onSuccess?: (md5: string) => unknown;
-    onError?: (err: DOMException | null) => unknown;
 }
 
-export interface IMd5Action {
-    (file: File): Promise<string>;
-    abort(): void;
-}
+type IResolvedResult = [md5: string, abort: () => void];
 
-const file2md5 = function (options: IOptions): IMd5Action {
-    const {chunkSize = 2 * 1024 * 1024, onProgress, onSuccess, onError} = options;
+const file2md5 = function (file: File, options: IOptions): Promise<IResolvedResult> {
+    const {chunkSize = 2 * 1024 * 1024, raw = false, onProgress} = options;
+    const spark = new SparkMD5.ArrayBuffer();
+    const fileReader = new FileReader();
+    const fileSize = file.size;
+    const chunks = Math.ceil(fileSize / chunkSize);
+    let currentChunk = 0;
+    let progress = 0;
 
-    const md5: IMd5Action = function (file: File) {
-        const spark = new SparkMD5.ArrayBuffer();
-        const fileReader = new FileReader();
-        const fileSize = file.size;
-        const chunks = Math.ceil(fileSize / chunkSize);
-        let currentChunk = 0;
-        let progress = 0;
+    const loadNext = function (): void {
+        const start = currentChunk * chunkSize;
+        const end = start + chunkSize >= fileSize ? fileSize : start + chunkSize;
 
-        md5.abort = function () {
-            fileReader.abort();
-        };
+        fileReader.readAsArrayBuffer(File.prototype.slice.call(file, start, end));
+    };
 
-        const loadNext = function (): void {
-            const start = currentChunk * chunkSize;
-            const end = start + chunkSize >= fileSize ? fileSize : start + chunkSize;
+    const abort = function (): void {
+        fileReader.abort();
+    };
 
-            fileReader.readAsArrayBuffer(File.prototype.slice.call(file, start, end));
-        };
+    const execute = function (resolve: (...IResolvedResult) => void, reject: (err: DOMException | null) => void): void {
+        fileReader.addEventListener(
+            'load',
+            e => {
+                spark.append(e.target?.result as ArrayBuffer);
+                currentChunk++;
+                progress = +(currentChunk / chunks).toFixed(2);
+                onProgress?.(progress);
 
-        const execute = function (resolve: (md5: string) => void, reject: (err: DOMException | null) => void) {
-            fileReader.addEventListener(
-                'load',
-                e => {
-                    spark.append(e.target?.result as ArrayBuffer);
-                    currentChunk++;
-                    progress = +(currentChunk / chunks).toFixed(2);
-                    onProgress?.(progress);
-
-                    if (currentChunk < chunks) {
-                        loadNext();
-                        return;
-                    }
-
-                    onSuccess?.(spark.end());
-                    resolve(spark.end());
+                if (currentChunk < chunks) {
+                    loadNext();
+                    return;
                 }
-            );
 
-            fileReader.addEventListener(
-                'error',
-                () => {
-                    onError?.(fileReader.error);
-                    reject(fileReader.error);
-                    spark.reset();
-                }
-            );
+                // If raw is true, the result as a binary string will be returned instead
+                resolve([spark.end(raw), abort]);
+            }
+        );
 
-            loadNext();
-        };
+        fileReader.addEventListener(
+            'abort',
+            () => {
+                // Resets the internal state of the computation
+                spark.reset();
+            }
+        );
 
-        return new Promise<string>(execute);
-    }
+        fileReader.addEventListener(
+            'error',
+            () => {
+                // Resets the internal state of the computation
+                spark.reset();
+                reject(fileReader.error);
+            }
+        );
 
-    md5.abort = function () {};
+        loadNext();
+    };
 
-    return md5;
+    return new Promise<IResolvedResult>(execute);
 };
 
 export default file2md5;
