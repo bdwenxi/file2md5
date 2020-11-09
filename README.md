@@ -6,6 +6,10 @@
 
 file2md5 is a browser-side implementation of file conversion to md5 format based on [SparkMD5](https://github.com/satazor/js-spark-md5), which supports typescript friendly.
 
+## Features
+
+- 
+
 ## Installation
 
 **Npm**
@@ -44,7 +48,8 @@ const onChange = async e => {
     const file = e.target.files[0];
     const abort = file2md5.abort;
 
-    // Assuming that it takes 3s to convert the md5 value, the simulation terminates the operation at 1s
+    // Assuming that it takes 3s to convert the md5 value, 
+    // the simulation terminates the operation at 1s
     setTimeout(
         () => abort(),
         1000
@@ -66,17 +71,36 @@ el.addEventListener(
 );
 ```
 
+**You can call the abort method to terminate before the end of the file conversion to the md5 value.**
+```ts
+const abort = file2md5.abort;
+
+abort();
+```
+
 ## Params
 
 | Name | Required | Description | Type | Default value |
 | ----- | ----- |-----|-----| ----- |
-| file | true | The file is used to convert md5 format | File | - |
-| options | false | Optional configuration items | IOptions | {} |
+| file | true | The file is used to convert md5 format. | File | - |
+| options | false | Optional configuration items. | IOptions | {} |
 
 ## Options
 
 | Name | Required | Description | Type | Default value |
 | ----- | ----- |-----|-----| ----- |
-| chunkSize | false | The conversion is performed in chunks, so you can customize the size of each chunk | number | 2 * 1024 * 1024 |
-| raw | false | If raw is true, the result as a binary string will be returned instead | boolean | false |
-| onProgress | false | Callback function for monitoring progress | (progress: number) => unknown | - |
+| chunkSize | false | The conversion is performed in chunks, so you can customize the size of each chunk. | number | 2 * 1024 * 1024 |
+| raw | false | If raw is true, the result as a binary string will be returned instead. | boolean | false |
+| onProgress | false | Callback function for monitoring progress. | (progress: number) => unknown | - |
+
+## Browser compatibility
+
+- IE10+
+- Chrome latest 2 versions
+- Firefox latest 2 versions
+- Microsoft Edge latest 2 versions
+- Safari latest 2 versions
+
+## License
+
+file2md5 is licensed under a [MIT License](https://github.com/bdwenxi/file2md5/blob/main/LICENSE)
