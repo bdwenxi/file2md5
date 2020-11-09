@@ -8,7 +8,7 @@ export interface IOptions {
 
 type IResolvedResult = [md5: string, abort: () => void];
 
-const file2md5 = function (file: File, options: IOptions): Promise<IResolvedResult> {
+const file2md5 = function (file: File, options: IOptions = {}): Promise<IResolvedResult> {
     const {chunkSize = 2 * 1024 * 1024, raw = false, onProgress} = options;
     const spark = new SparkMD5.ArrayBuffer();
     const fileReader = new FileReader();
