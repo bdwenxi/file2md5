@@ -1,4 +1,5 @@
 import SparkMD5 from 'spark-md5';
+import noop from 'lodash.noop';
 
 export interface IOptions {
     chunkSize?: number;
@@ -6,9 +7,12 @@ export interface IOptions {
     onProgress?: (progress: number) => unknown;
 }
 
-type IResolvedResult = [md5: string, abort: () => void];
+export interface IFile2Md5 {
+    (file: File, options: IOptions): Promise<string>;
+    abort(): void;
+}
 
-const file2md5 = function (file: File, options: IOptions = {}): Promise<IResolvedResult> {
+const file2md5: IFile2Md5 = function (file: File, options: IOptions = {}): Promise<string> {
     const {chunkSize = 2 * 1024 * 1024, raw = false, onProgress} = options;
     const spark = new SparkMD5.ArrayBuffer();
     const fileReader = new FileReader();
@@ -28,7 +32,7 @@ const file2md5 = function (file: File, options: IOptions = {}): Promise<IResolve
         fileReader.abort();
     };
 
-    const execute = function (resolve: (...IResolvedResult) => void, reject: (err: DOMException | null) => void): void {
+    const execute = function (resolve: (md5: string) => void, reject: (err: DOMException | null) => void): void {
         fileReader.addEventListener(
             'load',
             e => {
@@ -43,7 +47,7 @@ const file2md5 = function (file: File, options: IOptions = {}): Promise<IResolve
                 }
 
                 // If raw is true, the result as a binary string will be returned instead
-                resolve([spark.end(raw), abort]);
+                resolve(spark.end(raw));
             }
         );
 
@@ -52,6 +56,7 @@ const file2md5 = function (file: File, options: IOptions = {}): Promise<IResolve
             () => {
                 // Resets the internal state of the computation
                 spark.reset();
+                resolve('');
             }
         );
 
@@ -67,7 +72,11 @@ const file2md5 = function (file: File, options: IOptions = {}): Promise<IResolve
         loadNext();
     };
 
-    return new Promise<IResolvedResult>(execute);
+    file2md5.abort = abort;
+
+    return new Promise<string>(execute);
 };
+
+file2md5.abort = noop;
 
 export default file2md5;
