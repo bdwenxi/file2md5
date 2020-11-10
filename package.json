@@ -1,6 +1,6 @@
 {
     "name": "file2md5",
-    "version": "1.1.2",
+    "version": "1.2.0",
     "description": "file2md5 is a browser-side implementation of file conversion to md5 format based on SparkMD5, which supports typescript friendly.",
     "homepage": "https://github.com/bdwenxi/file2md5",
     "repository": "git@github.com:bdwenxi/file2md5.git",
