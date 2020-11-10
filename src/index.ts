@@ -8,7 +8,7 @@ export interface IOptions {
 }
 
 export interface IFile2Md5 {
-    (file: File, options: IOptions): Promise<string>;
+    (file: File, options?: IOptions): Promise<string>;
     abort(): void;
 }
 
