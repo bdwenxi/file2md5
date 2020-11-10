@@ -33,7 +33,7 @@ yarn add file2md5
 **Html:**
 
 ```html
-<input type="upload" id="upload" />
+<input type="file" id="upload" />
 ```
 
 **Javascript:**
@@ -52,7 +52,7 @@ const onChange = async e => {
     const file = e.target.files[0];
     const abort = file2md5.abort;
 
-    // Assuming that it takes 3s to convert the md5 value, 
+    // Assuming that it takes 3s to convert the md5 value,
     // the simulation terminates the operation at 1s
     setTimeout(
         () => abort(),
