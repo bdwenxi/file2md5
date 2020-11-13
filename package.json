@@ -5,6 +5,12 @@
     "homepage": "https://github.com/bdwenxi/file2md5",
     "repository": "git@github.com:bdwenxi/file2md5.git",
     "license": "MIT",
+    "keywords": [
+        "md5",
+        "browser-side",
+        "spark",
+        "file2md5"
+    ],
     "author": "bdwenxi <bdwenxi@gmail.com>",
     "contributors": [
         {
