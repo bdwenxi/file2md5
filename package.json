@@ -9,7 +9,8 @@
         "md5",
         "browser-side",
         "spark",
-        "file2md5"
+        "file2md5",
+        "md5 file browser"
     ],
     "author": "bdwenxi <bdwenxi@gmail.com>",
     "contributors": [
