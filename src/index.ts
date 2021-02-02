@@ -1,5 +1,4 @@
 import SparkMD5 from 'spark-md5';
-import noop from 'lodash.noop';
 
 export interface IOptions {
     chunkSize?: number;
@@ -11,6 +10,8 @@ export interface IFile2Md5 {
     (file: File, options?: IOptions): Promise<string>;
     abort(): void;
 }
+
+const noop = () => {};
 
 const file2md5: IFile2Md5 = function (file: File, options: IOptions = {}): Promise<string> {
     const {chunkSize = 2 * 1024 * 1024, raw = false, onProgress} = options;

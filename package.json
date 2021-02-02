@@ -43,7 +43,6 @@
         }
     },
     "dependencies": {
-        "lodash.noop": "^3.0.1",
         "spark-md5": "^3.0.1"
     },
     "devDependencies": {
