@@ -52,7 +52,7 @@
         "cz-conventional-changelog": "3.3.0",
         "husky": "^4.3.0",
         "reskript": "^0.26.7",
-        "typescript": "^4.0.5"
+        "typescript": "4.6.3"
     },
     "publishConfig": {
         "access": "public",
