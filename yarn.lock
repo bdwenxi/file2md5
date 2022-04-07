@@ -1581,10 +1581,10 @@
   resolved "http://registry.npm.baidu-int.com/@types%2fjson-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
   integrity sha1-9MfsQ+gbMZqYFRFQMXCfJph4kfA=
 
-"@types/lodash.noop@^3.0.6":
+"@types/lodash.noop@3.0.6":
   version "3.0.6"
-  resolved "http://registry.npm.baidu-int.com/@types%2flodash.noop/-/lodash.noop-3.0.6.tgz#2be7ceeabe21af841c76b57b6ff12bb04b7ad21f"
-  integrity sha1-K+fO6r4hr4QcdrV7b/ErsEt60h8=
+  resolved "https://registry.yarnpkg.com/@types/lodash.noop/-/lodash.noop-3.0.6.tgz#2be7ceeabe21af841c76b57b6ff12bb04b7ad21f"
+  integrity sha512-cleVuzJRs1YQXkxgnFzo/GlSlXOiD83VZW9oibsm1+gKXF3ioXFzBDZPpwTJCxh9lB/D+zodEvZtqeolhuPKZg==
   dependencies:
     "@types/lodash" "*"
 
@@ -1653,10 +1653,10 @@
   resolved "http://registry.npm.baidu-int.com/@types%2fsource-list-map/-/source-list-map-0.1.2.tgz#0078836063ffaf17412349bba364087e0ac02ec9"
   integrity sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA==
 
-"@types/spark-md5@^3.0.2":
+"@types/spark-md5@3.0.2":
   version "3.0.2"
-  resolved "http://registry.npm.baidu-int.com/@types%2fspark-md5/-/spark-md5-3.0.2.tgz#da2e8a778a20335fc4f40b6471c4b0d86b70da55"
-  integrity sha1-2i6Kd4ogM1/E9AtkccSw2Gtw2lU=
+  resolved "https://registry.yarnpkg.com/@types/spark-md5/-/spark-md5-3.0.2.tgz#da2e8a778a20335fc4f40b6471c4b0d86b70da55"
+  integrity sha512-82E/lVRaqelV9qmRzzJ1PKTpyrpnT7mwdneKNJB9hUtypZDMggloDfFUCIqRRx3lYRxteCwXSq9c+W71Vf0QnQ==
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -10134,10 +10134,10 @@ reselect@^4.0.0:
   resolved "http://registry.npm.baidu-int.com/reselect/-/reselect-4.0.0.tgz#f2529830e5d3d0e021408b246a206ef4ea4437f7"
   integrity sha512-qUgANli03jjAyGlnbYVAV5vvnOmJnODyABz51RdBN7M4WaVu8mecZWgyQNkG8Yqe3KRGRt0l4K4B3XVEULC4CA==
 
-reskript@^0.26.7:
+reskript@0.26.7:
   version "0.26.7"
-  resolved "http://registry.npm.baidu-int.com/reskript/-/reskript-0.26.7.tgz#60c002db2cf7eeea276e65036afed0e8fc7741d1"
-  integrity sha1-YMAC2yz37uonbmUDav7Q6Px3QdE=
+  resolved "https://registry.yarnpkg.com/reskript/-/reskript-0.26.7.tgz#60c002db2cf7eeea276e65036afed0e8fc7741d1"
+  integrity sha512-h6XT56KrcowY3QaPfMG/FezvhLDxNr01WMOABFXrOzl4Juo5rQaexeSzcA6SmX69QJzx639biVWRn+jwOHIYFg==
   dependencies:
     "@babel/core" "^7.9.0"
     "@babel/plugin-proposal-class-properties" "^7.8.3"
