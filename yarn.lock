@@ -1640,10 +1640,10 @@
   resolved "http://registry.npm.baidu-int.com/@types%2fjson-schema/-/json-schema-7.0.6.tgz#f4c7ec43e81b319a9815115031709f26987891f0"
   integrity sha1-9MfsQ+gbMZqYFRFQMXCfJph4kfA=
 
-"@types/lodash.noop@3.0.6":
-  version "3.0.6"
-  resolved "https://registry.yarnpkg.com/@types/lodash.noop/-/lodash.noop-3.0.6.tgz#2be7ceeabe21af841c76b57b6ff12bb04b7ad21f"
-  integrity sha512-cleVuzJRs1YQXkxgnFzo/GlSlXOiD83VZW9oibsm1+gKXF3ioXFzBDZPpwTJCxh9lB/D+zodEvZtqeolhuPKZg==
+"@types/lodash.noop@3.0.7":
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/@types/lodash.noop/-/lodash.noop-3.0.7.tgz#aca002be9c74ce1dfbea24ec06c3f1debc9117e7"
+  integrity sha512-vaQ5DABJ4lDb58EVHnSTyOjkCem+Wj6QF0s8Ybhvt7kFyJCoRmjEajg6vg30jCN8CVZi89uRR5wqQWn724JQHg==
   dependencies:
     "@types/lodash" "*"
 
