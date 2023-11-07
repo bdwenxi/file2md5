@@ -47,7 +47,7 @@
     },
     "devDependencies": {
         "@types/jest": "29.4.4",
-        "@types/lodash.noop": "3.0.7",
+        "@types/lodash.noop": "3.0.9",
         "@types/spark-md5": "3.0.2",
         "cz-conventional-changelog": "3.3.0",
         "husky": "8.0.3",
